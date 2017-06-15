@@ -1807,19 +1807,18 @@ function PFLangCategoryID_ld($id,$lang){
 			if($act_ok == 1){
 				$output = '';
 		        $output .= '<ul id="pfcrumbs" class="'.trim($params['_text_custom_css_main']).'"">';
-
+						$term_id = 0;
 		        if (!is_home()) {
 		                $output .= '<li><a href="';
 		                $output .= esc_url(home_url());
 		                $output .= '">';
-		                $output .= esc_html__('首頁','pointfindert2d');
+		                $output .= esc_html__('首頁' ,'pointfindert2d');
 		                $output .= "</a></li>";
 		                if (is_category() || is_single()) {
-		                 
+		                $output .="category"; 
 
 		                        $post_type = get_post_type();
 								$setup3_pointposttype_pt1 = PFSAIssetControl('setup3_pointposttype_pt1','','pfitemfinder');
-
 								switch ($post_type) {
 									case $setup3_pointposttype_pt1:
 										$categories = get_the_terms($mpost_id,'pointfinderltypes');
@@ -1831,6 +1830,8 @@ function PFLangCategoryID_ld($id,$lang){
 											$cat_count = count($categories);
 
 											foreach($categories as $category) {
+												$term_id = $category->term_id ;
+
 												if (!empty($category->parent)) {
 													$term_parent_name = get_term_by('id', $category->parent, 'pointfinderltypes','ARRAY_A');
 													$get_termname = $term_parent_name['name'].' / '.$category->name;
@@ -1840,7 +1841,7 @@ function PFLangCategoryID_ld($id,$lang){
 												}
 
 												$output2 .= '<li>';
-												$output2 .= '<a href="'.get_term_link( $category->term_id,'pointfinderltypes' ).'" title="' . esc_attr( sprintf( esc_html__( "View all posts in %s","pointfindert2d" ), $category->name ) ) . '">'.$category->name.'</a>';
+												$output2 .= '<a href="'.get_term_link( $category->term_id,'pointfinderltypes' ).'" title="' . esc_attr( sprintf( esc_html__( "View all posts in %s","pointfindert2d" ), $category->name ) ) . '">'.$category->name.$term_id.  '</a>';
 												$output2 .= '</li>';
 											}
 										$output .= trim($output2);
@@ -1867,32 +1868,26 @@ function PFLangCategoryID_ld($id,$lang){
 										}
 
 								}
-
-
-		                       
-
 		                        if (is_single()) {
 		                                $output .= "<li>";
-		                                $output .= '<a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a>';
+		                                $output .= '<a href="'.get_permalink().'" title="is_single'.get_the_title().'">'.get_the_title().'</a>';
 		                                $output .= '</li>';
 		                        }
 		                } elseif (is_page()) {
-		                		
 								$parents = get_post_ancestors($mpost_id);
 								$parents = array_reverse($parents);
 								if (!empty($parents)) {
 									foreach ($parents as $key => $value) {
 										$output .= '<li>';
-		                        		$output .= '<a href="'.get_permalink($value).'" title="'.get_the_title($value).'">'.get_the_title($value).'</a>';
+		                        		$output .= '<a href="'.get_permalink($value).'" title="is_page'.get_the_title($value).'">'.get_the_title($value).'</a>';
 		                        		$output .= '</li>';
 									}
 								}
 						  
 		                        $output .= '<li>';
-		                        $output .= '<a href="'.get_permalink().'" title="'.get_the_title().'">'.get_the_title().'</a>';
+		                        $output .= '<a href="'.get_permalink().'" title=" is_page'.get_the_title().'">'.get_the_title().'</a>';
 		                        $output .= '</li>';
 		                } elseif (is_tax()) {
-		                	$output .= "<li>";
                             $output .= $params['taxname'];
                             $output .= '</li>';
 		                }elseif (is_tag()) {
@@ -1900,7 +1895,6 @@ function PFLangCategoryID_ld($id,$lang){
 		                	$output .= single_tag_title('',false);
 		                	$output .= '</li>';
 		                }
-
 		        
 		        }elseif (is_day()) {$output .="<li>".esc_html__('Archive for','pointfindert2d')." "; get_the_time('F jS, Y'); $output .='</li>';
 		        }elseif (is_month()) {$output .="<li>".esc_html__('Archive for','pointfindert2d')." "; get_the_time('F, Y'); $output .='</li>';
@@ -1908,8 +1902,14 @@ function PFLangCategoryID_ld($id,$lang){
 		        }elseif (is_author()) {$output .="<li>".esc_html__('Author Archive','pointfindert2d').""; $output .='</li>';
 		        }elseif (isset($_GET['paged']) && !empty($_GET['paged'])) {$output .= "<li>".esc_html__('Blog Archives','pointfindert2d').""; $output .='</li>';
 		        }elseif (is_search()) {$output .="<li>".esc_html__('Search Results','pointfindert2d').""; $output .='</li>';}
-					$output .='<li id="pfpostitemlink" >';
-					$output .='<a style="background-color: green; color:white" class="pfadmicon-glyph-475" >发布信息</a></li>';
+					if($term_id > 0) {
+						$output .='<li >';
+						$output .='<a href="/dashboard/?ua=newitem&pfupload_listingtypes='. $term_id . '" style="background-color: green; color:white" class="pfadmicon-glyph-475" >发布信息</a></li>';
+					}
+					else {
+						$output .='<li id="pfpostitemlink" >';
+						$output .='<a style="background-color: green; color:white" class="pfadmicon-glyph-475" >发布信息</a></li>';
+					}
 
 		        $output .= '</ul>';
 
