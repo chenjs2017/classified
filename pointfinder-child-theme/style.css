@@ -1,0 +1,60 @@
+/*
+Theme Name: Point Finder Child Theme
+Description: Child theme for the Point Finder
+Author: Your name here
+Template: pointfinder
+*/
+
+ 
+/* =Theme customization starts here
+------------------------------------------------------- */
+
+.pflist-item-inner .pflist-detailcontainer.pflist-subitem {
+	border-top-width: 1px;
+}
+
+#pf-ajax-uploaditem-button.display {
+	display: block;
+}
+
+.wp-editor-container {
+	border: 1px solid #e5e5e5;
+}
+
+#add-classified-wrap #wp-content-editor-container{
+	width: 600px;
+}
+
+#add-classified-wrap #ed_toolbar { display: none }
+#add-classified-wrap #wp-content-editor-tools { display: none }
+
+.new-desc {
+	font-size: 15px;
+}
+
+
+.pflist-detailcontainer{
+	width: 100% !important;
+}
+
+.pfitemlists-content-elements.pf1col .wpfitemlistdata .pflist-detailcontainer .pflist-itemdetails
+{
+	padding-bottom: 0px !important;
+	margin-top: 0px !important;
+}
+
+.menu-link {
+	font-size: 17px !important;
+}
+
+.pfsubmit-title {
+	font-size: 15px !important;
+}
+
+.pfsubmit-inner-sub {
+	font-size: 15px !important;
+}
+
+.lbl-text{
+	font-size: 15px !important;
+}
