@@ -128,7 +128,6 @@ function PFGetItemPageCol1(){
 		$viewcount_text = '';
 	}
 	
-o
 	if ($postd_hideshow == 1) {
 		$postd_text = ''.esc_html__('发布于：','pointfindert2d').' '.get_the_time(get_option('date_format')).' /';
 	}else{
