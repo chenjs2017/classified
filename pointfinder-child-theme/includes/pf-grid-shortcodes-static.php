@@ -296,8 +296,7 @@ function pf_itemgrid2_func_new( $atts ) {
 					$args['meta_key']='webbupointfinder_item_'.$pfg_orderby;
 					
 					if(PFIF_CheckFieldisNumeric_ld($pfg_orderby) == false){
-						$args['orderby']= array('meta_value' => $pfg_order);
-					}else{
+						$args['orderby']= array('meta_value' => $pfg_order); }else{
 						$args['orderby']= array('meta_value_num' => $pfg_order);
 					}
 					
@@ -314,8 +313,10 @@ function pf_itemgrid2_func_new( $atts ) {
 			}else{
 				
 				if($pfgetdata['orderby'] != ''){
-					$args['meta_key'] = $meta_key_featured;
-					$args['orderby'] = array('meta_value_num' => 'DESC' , $pfgetdata['orderby'] => $pfgetdata['sortby']);
+		//jschen, only sort by date give new post 30 minute to on top
+		//				$args['meta_key'] = $meta_key_featured;
+		//			$args['orderby'] = array('meta_value_num' => 'DESC' , $pfgetdata['orderby'] => $pfgetdata['sortby']);
+						
 				}else{
 					$args['meta_key'] = $meta_key_featured;
 					$args['orderby'] = array('meta_value_num' => 'DESC' , $setup22_searchresults_defaultsortbytype => $setup22_searchresults_defaultsorttype);
@@ -433,9 +434,6 @@ function pf_itemgrid2_func_new( $atts ) {
 			if (empty($pfgetdata['manual_args'])) {
 				$loop = new WP_Query( $args );
 			}else{
-
-
-
 				$loop = new WP_Query( $pfgetdata['manual_args'] );
 			}
 		/* End: Coordinate Filter */
@@ -536,11 +534,8 @@ function pf_itemgrid2_func_new( $atts ) {
 
 		
 
-		/*
-		print_r($loop->query).PHP_EOL;
-		echo $loop->request.PHP_EOL;
-		*/
-
+//		print_r($loop->query).PHP_EOL;
+//		echo $loop->request.PHP_EOL;
 		
 
 		if (!empty($pfgetdata['manual_args'])) {
