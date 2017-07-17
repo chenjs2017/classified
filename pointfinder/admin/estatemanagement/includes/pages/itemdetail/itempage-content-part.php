@@ -27,7 +27,6 @@
 **/
 	function PFIF_DetailText_id($id){
 		//Fields $if_detailtext	
-		
 			
 		$pfstart = PFCheckStatusofVar('setup1_slides');
 		
@@ -117,9 +116,9 @@
 				
 				$description_block .= '<div class="new-desc" class="pf-itempage-desc descexpf" itemprop="description">';
 					
-					$output = do_shortcode(get_the_content());
-					$output = apply_filters('convert_chars', $output);
-					$output = apply_filters('the_content', $output);
+				$output = do_shortcode(get_the_content());
+//jchen					$output = apply_filters('convert_chars', $output);
+//					$output = apply_filters('the_content', $output);
 
 
 					$description_block .= $output;
