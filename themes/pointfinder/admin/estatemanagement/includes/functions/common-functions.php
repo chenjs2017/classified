@@ -8,6 +8,11 @@
 * Please do not modify below functions.
 ***********************************************************************************************************************************/
 
+function print_time() {
+	$date=new DateTime(); //this returns the current date time
+	$result = $date->format('Y-m-d-H-i-s');
+	echo 'jchen:current time: '. $result;
+}
 
 function pointfinder_pfstring2AdvArray($results,$keyname, $kv = ',',$uearr_count) {
 	$user_ids = '';
