@@ -7,8 +7,6 @@
 * Author: Webbu Design
 * Please do not modify below functions.
 ***********************************************************************************************************************************/
-
-
 get_template_part('admin/estatemanagement/includes/pages/itemdetail/itempage-content','part');
 
 function PFGetItemPageCol1(){
