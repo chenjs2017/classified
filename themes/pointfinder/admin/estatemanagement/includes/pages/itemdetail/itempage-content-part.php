@@ -117,11 +117,10 @@
 				$description_block .= '<div class="new-desc" class="pf-itempage-desc descexpf" itemprop="description">';
 					
 				$output = do_shortcode(get_the_content());
-//jchen					$output = apply_filters('convert_chars', $output);
-//					$output = apply_filters('the_content', $output);
+				$output = apply_filters('convert_chars', $output);
+				$output = apply_filters('the_content', $output);
 
-
-					$description_block .= $output;
+				$description_block .= $output;
 				$description_block .= '</div>';
 		$description_block .= '</section>';
 
