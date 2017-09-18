@@ -237,7 +237,10 @@ function pf_ajax_itemsystem(){
     /**
     *Start: New/Edit Item Form Request
     **/ 
-
+		if( ! $is_valid )
+		{
+			die();
+		}
       if(isset($_POST) && $_POST!='' && count($_POST)>0){
           if($user_id != 0){
             if($vars['action'] == 'pfget_edititem'){

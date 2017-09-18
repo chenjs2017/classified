@@ -3115,6 +3115,8 @@ myDropzone.on("addedfile", function(origFile) {
 										**/
 
 									$this->FieldOutput .= '</div>';
+									//do_action(‘google_invre_render_widget_action’);
+									$this->FieldOutput .= apply_filters('google_invre_widget_output_html_filter');
 
 
 								
