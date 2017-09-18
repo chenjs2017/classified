@@ -237,6 +237,7 @@ function pf_ajax_itemsystem(){
     /**
     *Start: New/Edit Item Form Request
     **/ 
+		$is_valid = apply_filters(‘google_invre_is_valid_request_filter’, true);
 		if( ! $is_valid )
 		{
 			die();
